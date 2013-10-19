@@ -17,6 +17,7 @@
 package com.arix.data;
 
 import com.arix.utils.Log;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -27,6 +28,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -39,16 +42,16 @@ public class ArxParser {
     public static ArxFile readArxFile(File f) {
         HashMap<String, String> result = new HashMap();
         try {
-            FileInputStream fis = new FileInputStream(f);
-            lineIterator = new Scanner(fis);
+
+            BufferedReader br = new BufferedReader(new FileReader(f));
 
             String line;
 
             String tag;
             String value;
 
-            while ((line = lineIterator.next()) != null) {
-                System.out.println(line);
+            while ((line = br.readLine()) != null) {
+                
                 if (!line.startsWith("#") || !line.startsWith(" ") || !line.isEmpty()) {
                     String[] splittedLine = line.split(":");
                     tag = splittedLine[0];
@@ -59,6 +62,8 @@ public class ArxParser {
             }
         } catch (FileNotFoundException ioe) {
             Log.error("Cannot read Arx file: '" + f.getName() + "'\nReason: " + ioe.getMessage());
+        } catch (IOException ex) {
+            Log.error("Cannot read Arx file: '" + f.getName() + "'\nReason: " + ex.getMessage());
         }
         return new ArxFile(result);
     }

@@ -26,20 +26,29 @@ import com.arix.utils.Log;
  */
 public class Server {
 
-    private Log log = new Log();
     private ArxFile serverConfig;
-    
+
     private Server() {
         //TODO: load system-important plugins.
-        StructureSetup.checkStructureIntegrity();
+
     }
-    
+
     public void setConfig(ArxFile af) {
         serverConfig = af;
+
+    }
+    
+    public ArxFile getConfig() {
+        return serverConfig;
+    }
+
+    public void test() {
+        System.out.println("Tested");
     }
 
     public static void init() {
         getServer();
+        StructureSetup.checkStructureIntegrity();
     }
 
     public static Server getServer() {

@@ -66,7 +66,9 @@ public class StructureSetup {
                 Log.error("Could not create Server Configuration File.\nReason: " + e.getMessage());
             }
         } else {
+            Server.getServer().test();
             Server.getServer().setConfig(ArxParser.readArxFile(SERVER_CONFIG));
+            System.out.println("Name: " + Server.getServer().getConfig().getString("name"));
         }
 
     }
