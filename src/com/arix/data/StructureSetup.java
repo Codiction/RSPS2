@@ -16,7 +16,10 @@
  */
 package com.arix.data;
 
+import com.arix.Server;
+import com.arix.utils.Log;
 import java.io.File;
+import java.io.IOException;
 
 /**
  *
@@ -28,11 +31,43 @@ public class StructureSetup {
     private static final File PLUGIN_FOLDER = new File("./plugins");
     private static final File SAVE_FOLDER = new File("./data/players");
     private static final File CONFIG_FOLDER = new File("./data/configurations");
+    private static final File SERVER_CONFIG = new File(CONFIG_FOLDER.getPath() + "\\" + "server.arx");
+
+    private static final File[] dirList = {DATA_FOLDER, PLUGIN_FOLDER, SAVE_FOLDER, CONFIG_FOLDER};
 
     /**
      * Checks and validates if the file/folder structure is healthy.
      */
     public static void checkStructureIntegrity() {
-        
+
+        for (File f : dirList) {
+            if (!f.exists()) {
+                try {
+                    Log.debug("Creating: " + f.getName() + "(" + f.getPath() + ")");
+                    f.mkdir();
+
+                } catch (Exception e) {
+                    Log.error("Could not repair/create data structure.");
+                }
+            }
+        }
+
+        if (!SERVER_CONFIG.exists()) {
+            try {
+                SERVER_CONFIG.createNewFile();
+                ArxFile af = new ArxFile();
+                af.setString("name", "RSPS Server");
+                af.setInt("version", 1);
+                af.setBoolean("site", true);
+                
+                ArxParser.writeArxFile(af.getData(), SERVER_CONFIG);
+                Log.debug("Created server configuration file.");
+            } catch (IOException e) {
+                Log.error("Could not create Server Configuration File.\nReason: " + e.getMessage());
+            }
+        } else {
+            Server.getServer().setConfig(ArxParser.readArxFile(SERVER_CONFIG));
+        }
+
     }
 }

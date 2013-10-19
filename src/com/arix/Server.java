@@ -16,6 +16,7 @@
  */
 package com.arix;
 
+import com.arix.data.ArxFile;
 import com.arix.data.StructureSetup;
 import com.arix.utils.Log;
 
@@ -26,16 +27,15 @@ import com.arix.utils.Log;
 public class Server {
 
     private Log log = new Log();
-    private Config config;
+    private ArxFile serverConfig;
+    
     private Server() {
         //TODO: load system-important plugins.
-        
-        config = new Config();
         StructureSetup.checkStructureIntegrity();
     }
     
-    public Config getConfig() {
-        return config;
+    public void setConfig(ArxFile af) {
+        serverConfig = af;
     }
 
     public static void init() {

@@ -43,14 +43,6 @@ public class Log {
         StackTraceElement elem = Thread.currentThread().getStackTrace()[2];
         System.out.println("[DEBUG] " + elem + " - " + msg);
     }
-    
-    public static void debug(DebugLevel lvl, String msg) {
-        DebugLevel configuredLevel = Server.getServer().getConfig().getDebugLevel();
-        if(lvl == DebugLevel.PLUGIN && (configuredLevel == DebugLevel.ALL || configuredLevel == DebugLevel.PLUGIN)) {
-        StackTraceElement elem = Thread.currentThread().getStackTrace()[2];
-        System.out.println("[DEBUG] " + elem + " - " + msg);
-        }
-    }
 
     public static void warning(String msg) {
         StackTraceElement elem = Thread.currentThread().getStackTrace()[2];

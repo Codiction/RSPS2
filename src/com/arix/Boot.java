@@ -24,7 +24,7 @@ package com.arix;
 public class Boot {
 
     /**
-     * Starts the whole thing keeping arguments in mind
+     * Starts the whole thing
      * @param arguments given arguments on JVM start (array:String)
      */
     public static void main(String[] arguments) {
