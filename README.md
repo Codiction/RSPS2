@@ -1,7 +1,7 @@
 #Welcome
 
-*For questions or more information please visit the Repository Wiki. https://github.com/Codiction/TheRSPS/wiki*
-*If you found an issue that needs addressing, or a bug please report it on the Issues page. https://github.com/Codiction/TheRSPS/issues*
+*For questions or more information please visit the Repository Wiki. https://github.com/Codiction/RSPS2/wiki*
+*If you found an issue that needs addressing, or a bug please report it on the Issues page. https://github.com/Codiction/RSPS2/issues*
 
 
 ####What is this project about?
