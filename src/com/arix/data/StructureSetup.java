@@ -27,11 +27,11 @@ import java.io.IOException;
  */
 public class StructureSetup {
 
-    private static final File DATA_FOLDER = new File("./data");
-    private static final File PLUGIN_FOLDER = new File("./plugins");
-    private static final File SAVE_FOLDER = new File("./data/players");
-    private static final File CONFIG_FOLDER = new File("./data/configurations");
-    private static final File SERVER_CONFIG = new File(CONFIG_FOLDER.getPath() + "\\" + "server.arx");
+    public static final File DATA_FOLDER = new File("./data");
+    public static final File PLUGIN_FOLDER = new File("./plugins");
+    public static final File SAVE_FOLDER = new File("./data/players");
+    public static final File CONFIG_FOLDER = new File("./data/configurations");
+    public static final File SERVER_CONFIG = new File(CONFIG_FOLDER.getPath() + "\\" + "server.arx");
 
     private static final File[] dirList = {DATA_FOLDER, PLUGIN_FOLDER, SAVE_FOLDER, CONFIG_FOLDER};
 
@@ -59,16 +59,14 @@ public class StructureSetup {
                 af.setString("name", "RSPS Server");
                 af.setInt("version", 1);
                 af.setBoolean("site", true);
-                
+
                 ArxParser.writeArxFile(af.getData(), SERVER_CONFIG);
                 Log.debug("Created server configuration file.");
             } catch (IOException e) {
                 Log.error("Could not create Server Configuration File.\nReason: " + e.getMessage());
             }
         } else {
-            Server.getServer().test();
-            Server.getServer().setConfig(ArxParser.readArxFile(SERVER_CONFIG));
-            System.out.println("Name: " + Server.getServer().getConfig().getString("name"));
+
         }
 
     }

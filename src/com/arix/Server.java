@@ -17,6 +17,7 @@
 package com.arix;
 
 import com.arix.data.ArxFile;
+import com.arix.data.ArxParser;
 import com.arix.data.StructureSetup;
 import com.arix.utils.Log;
 
@@ -49,6 +50,7 @@ public class Server {
     public static void init() {
         getServer();
         StructureSetup.checkStructureIntegrity();
+        getServer().setConfig(ArxParser.readArxFile(StructureSetup.SERVER_CONFIG));
     }
 
     public static Server getServer() {
